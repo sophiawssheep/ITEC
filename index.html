@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <title>Miserable Life in Hong Kong</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- mobile specific metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/vendor.css">
+    <link rel="stylesheet" href="css/main.css">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous"> -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+
+    <!-- script
+    ================================================== -->
+    <script src="js/modernizr.js"></script>
+    <script src="js/pace.min.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://d3js.org/topojson.v3.min.js"></script>
+    <!-- favicons
+    ================================================== -->
+    <link rel="shortcut icon" href="house.png" type="image/x-icon">
+    <link rel="icon" href="house.png" type="image/x-icon">
+
+    <style>
+        #hk_map {
+            background-color: #fff;
+            padding: 10px;
+
+        }
+        
+        .district-borders {
+            fill: none;
+            stroke: #fff;
+            stroke-width: 0.5px;
+            stroke-linejoin: round;
+            stroke-linecap: round;
+            pointer-events: none;
+        }
+        #tooltip {
+    position: absolute;
+    display: none;
+}
+    </style>
+
+</head>
+
+<body id="top">
+
+    <!-- header
+    ================================================== -->
+    <header class="s-header">
+
+
+
+        <nav class="header-nav">
+
+            <a href="#0" class="header-nav__close" title="close">
+                <span>Close</span>
+            </a>
+            <!-- pop up menu bar
+    ================================================== -->
+            <div class="header-nav__content">
+                <h3>Housing issues in Hong Kong</h3>
+
+                <ul class="header-nav__list">
+                    <li class="current">
+                        <a class="smoothscroll" href="#home" title="home">HOME</a>
+                    </li>
+                    <li>
+                        <a class="smoothscroll" href="#about" title="about">LIVING IN PRIVATE DOMESTIC FLATS</a>
+                    </li>
+                    <li>
+                        <a class="smoothscroll" href="#services" title="services">LIVING IN PUBLIC RENTAL HOUSING</a>
+                    </li>
+                    <li>
+                        <a class="smoothscroll" href="#works" title="works">LIVING IN SUBDIVIDED UNITS </a>
+                    </li>
+                    <li>
+                        <a class="smoothscroll" href="#contact" title="contact">VOICE YOUR OPINION</a>
+                    </li>
+                </ul>
+
+                <p>This website is designed by two HKBU student for data visualization course. Please contant us if you
+                    have any inquiries</p>
+
+            </div>
+            <!-- end header-nav__content -->
+
+        </nav>
+        <!-- end header-nav -->
+
+        <a class="header-menu-toggle" href="#0">
+            <span class="header-menu-icon"></span>
+        </a>
+
+    </header>
+    <!-- end s-header -->
+
+
+    <!-- home, title section
+    ================================================== -->
+    <section id="home" class="s-home target-section" data-parallax="scroll" data-image-src="images/HK-bg.jpg"
+        data-natural-width=3000 data-natural-height=2000 data-position-y=top>
+
+        <div class="shadow-overlay"></div>
+
+        <div class="home-content">
+
+            <div class="row home-content__main">
+                <h1>
+                    Miserable Life of <br>the Hong Konger
+                    <br>
+                </h1>
+
+                <p>
+                    The average living space in Hong Kong <br> is 180 sq ft per person, which is <br>equivalent to
+                    one-car garage.
+                    <br>
+
+                </p>
+            </div>
+            <!-- end home-content__main -->
+
+        </div>
+        <!-- end home-content -->
+
+        <!-- home page sidelinks -->
+        <ul class="home-sidelinks">
+            <li>
+                <a class="smoothscroll" href="#about">Private
+                    <span>Who is affordable for a flat in HK?</span>
+                </a>
+            </li>
+            <li>
+                <a class="smoothscroll" href="#services">Public
+                    <span>How long is the waiting time for PRHs?</span>
+                </a>
+            </li>
+            <li>
+                <a class="smoothscroll" href="#works">Subdivided Units
+                    <span>Who is living in the SDUs?</span>
+                </a>
+            </li>
+        </ul>
+        <!-- end home-sidelinks -->
+
+        <a href="#about" class="home-scroll smoothscroll">
+            <span class="home-scroll__text">Start your housing journey</span>
+            <span class="home-scroll__icon"></span>
+        </a>
+        <!-- end home-scroll -->
+
+    </section>
+    <!-- end s-home -->
+
+
+    <!-- LIVING IN PRIVATE DOMESTIC FLATS section
+    ================================================== -->
+    <section id='about' class="s-about">
+
+        <div class="row section-header" data-aos="fade-up">
+            <div class="col-full">
+                <h3 class="subhead">Living in private domestic flats</h3>
+                <h1 class="display-1"></h1>
+            </div>
+        </div>
+        <!-- end section-header -->
+
+        <div class="row" data-aos="fade-up">
+            <div class="col-full">
+                <p class="lead">
+                    The latest available government statistics showed that Hong Kong's private
+                    residential property prices had spiked since 2010, there was a double increase from last
+                    year. And the rental index, had also gone up steadily. According to Demographia International
+                    Housing Affordability Survey, Hong Kong's private home prices increased by 490 per cent since
+                    2013, with those for the smaller flats scaled up by 573 per cent. This situation gives it the
+                    renowned distinction of being the world's most expensive real estate market.
+
+                </p>
+            </div>
+        </div>
+        <!-- end about-desc -->
+
+
+        <!--section for line chart)-->
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-1"></div>
+                <div class="col-xl-10"> <canvas id="mylineChart"></canvas><br><br></div>
+                <div class="col-xl-1"></div>
+            </div>
+        </div>
+        <!--desciptions-->
+        <div class="row" data-aos="fade-up">
+            <div class="col-full">
+                <p class="lead">
+                    Despite of unstoppable rise in flat price, the salary growth far less than the increment scale
+                    of private domestic residential price rise.
+                </p>
+            </div>
+        </div>
+
+        <div class="row" data-aos="fade-up">
+            <div class="col-full">
+                <p class="lead">
+                    With reference to the 14th Annual Demographia International Housing Affordability Survey carried by
+                    urban planning policy consultancy Demographia in 2017, which covers 293 cities in
+                    nine countries, e.g. China, the United States, Singapore, etc. Hong Kong is the world’s most
+                    expensive city to live in as disparity between the median home
+                    price and the median household income continues to expand.
+
+                </p>
+            </div>
+        </div> 
+        <div class="row" data-aos="fade-up">
+            <div class="col-full">
+                <p class="lead">
+
+                    The result unveiled on Monday showed Hong Kong topped the list for the eighth year in a row, with
+                    home prices regarded by Demographia as being “least affordable”. And it was the only Chinese city
+                    to be ranked in the list.The figure was up from 18.1 times a year earlier and the highest level
+                    ever recorded since the
+                    survey began in 2005.
+                </p>
+            </div>
+        </div>
+        <div class="row" data-aos="fade-up">
+            <div class="col-full">
+                <p class="lead">
+                    The median multiple, or the ratio of the median price of property to the median household income,
+                    was 19.4 times in Hong Kong,according to the survey. That means it will take 19.4 years for an
+                    average household to afford an apartment in Hong Kong
+                    even if there were no other expenses, e.g. no consumption of food and shelter.
+
+                </p>
+            </div>
+        </div>
+
+        <!-- end of LIVING IN PRIVATE DOMESTIC FLATS section
+    ================================================== -->
+
+        </div>
+        <!-- end about-stats -->
+
+
+    </section>
+    <!-- end s-about -->
+
+
+    <!-- LIVING IN PUBLIC RENTAL HOUSING section
+    ================================================== -->
+    <section id='services' class="s-services light-gray">
+
+        <div class="row section-header" data-aos="fade-up">
+            <div class="col-full">
+                <h3 class="subhead">Living in public rental housing</h3>
+                <h1 class="display-1"></h1>
+            </div>
+        </div>
+        <!-- end section-header -->
+
+        <div class="row" data-aos="fade-up">
+            <div class="col-full">
+                <p class="lead">
+                    As at end-September 2018, there were about 150,200 general applications for PRH,
+                    and about 117,500 non-elderly one-person applications under the Quota and Points
+                    System. The average waiting time for general applicants was 5.5 years. Among them,
+                    the average waiting time for elderly one-person applicants was 2.9 years.
+                </p>
+            </div>
+        </div>
+
+
+        <!--section for bar chart)-->
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-1"></div>
+                <div class="col-xl-10"> <canvas id="publichousingwaitingtime"></canvas><br><br></div>
+                <div class="col-xl-1"></div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-1"></div>
+                    <div class="col-xl-10"><canvas id="myChart2"></canvas>
+                        <br></div>
+                    <div class="col-xl-1"></div>
+                </div>
+            </div>
+
+            <!--section for elaboration-->
+            <div class="row" data-aos="fade-up">
+                <div class="col-full">
+                    <p class="lead">
+                        Nowadays, it is argued that the income thresold for PRH applicants is not aligned to the market
+                        salary level. According to the statistics released in 2018, the median monthly wage of
+                        employees
+                        in Hong Kong was $16,800 in May-Jun 2017. For a 2-people household, if both of the memebrs are
+                        working class and having around $16,800 as monthly income, in addition to basic investment,
+                        they
+                        would exceed the income and asset limit set by the government. While having this income level
+                        could
+                        not allow residents to make a life in Hong Kong easily, due to the high price index of the
+                        city. Some
+                        citizens may need to change their job or voluntarily cut down their income in order to pass the
+                        income and asset limit of PRH application, which even makes their life harder.
+                    </p>
+                </div>
+            </div>
+            <!-- end about-desc -->
+
+    </section>
+    <!-- end s-services -->
+
+
+
+    <!-- Subdivided Units
+    ================================================== -->
+    <section id='works' class="s-works">
+
+        <div class="row section-header" data-aos="fade-up">
+            <div class="col-full">
+                <h3 class="subhead">Living in Subdivided Units</h3>
+                <h1 class="display-1">There are many people in Hong Kong living in subdivided units with little room to
+                    live.</h1>
+            </div>
+        </div> <!-- end section-header -->
+
+        <div class="row masonry-wrap">
+            <div class="masonry">
+
+
+                <div class="masonry__brick" data-aos="fade-up">
+                    <div class="item-folio">
+
+                        <div class="item-folio__thumb">
+                            <a href="images/portfolio/HK2.jpg" class="thumb-link" title="Hong Kong Cage House"
+                                data-size="1050x700">
+                                <img src="images/portfolio/HK2.jpg" srcset="images/portfolio/HK2.jpg" alt="" height="700"
+                                    width="400">
+                            </a>
+                        </div>
+
+                        <div class="item-folio__text">
+                            <h3 class="item-folio__title">
+                                Cage House
+                            </h3>
+                            <p class="item-folio__cat">
+                                Subdivided unit is also called as cage house or bedspace apartments homes.
+                            </p>
+                        </div>
+
+                        <div class="item-folio__caption">
+                            <p>In one room, usually occupies 5-6 people with the size of one cage (2 × 0,5 meters).</p>
+                        </div>
+
+                    </div> <!-- end item-folio -->
+                </div> <!-- end masonry__brick -->
+
+                <div class="masonry__brick" data-aos="fade-up">
+                    <div class="item-folio">
+
+                        <div class="item-folio__thumb">
+                            <a href="images/portfolio/HK1.jpg" class="thumb-link" title="HK1" data-size="1050x700">
+                                <img src="images/portfolio/HK1.jpg" srcset="images/portfolio/HK1.jpg" alt="" height="700"
+                                    width="400">
+                            </a>
+                        </div>
+
+                        <div class="item-folio__text">
+                            <h3 class="item-folio__title">
+                                Expensive Cage House
+                            </h3>
+                            <p class="item-folio__cat">
+                                The price for cage house is high.
+                            </p>
+                        </div>
+
+                        <span class="item-folio__caption">
+                            <p> Even though the size for cage house is really small, one can be rented for HK $
+                                1,500-2,000 (US$200- US$255).</p>
+                        </span>
+
+                    </div> <!-- end item-folio -->
+                </div> <!-- end masonry__brick -->
+
+                <div class="masonry__brick" data-aos="fade-up">
+                    <div class="item-folio">
+
+                        <div class="item-folio__thumb">
+                            <a href="images/portfolio/HK3.jpg" class="thumb-link" title="Woodcraft" data-size="1050x700">
+                                <img src="images/portfolio/HK3.jpg" srcset="images/portfolio/HK3.jpg" alt="images/portfolio/HK3.jpg">
+                            </a>
+                        </div>
+
+                        <div class="item-folio__text">
+                            <h3 class="item-folio__title">
+                                Living Conditions
+                            </h3>
+                            <p class="item-folio__cat">
+                                The safety and other living conditions in these cage house are often poor.
+                            </p>
+                        </div>
+
+                        <span class="item-folio__caption">
+                            <p>The living conditions in subdivided flats , including hygiene, facilities,etc are poor.
+                                For example, there's rats running in the flats at night.
+                            </p>
+                        </span>
+
+                    </div> <!-- end item-folio -->
+                </div> <!-- end masonry__brick -->
+
+            </div> <!-- end item-folio -->
+        </div> <!-- end masonry__brick -->
+
+        </div> <!-- end masonry -->
+        </div> <!-- end masonry-wrap -->
+
+        <div class="row" data-aos="fade-up">
+            <div class="col-full">
+                <p class="lead">
+                    When people cannot afford private domestic flats, and they are not entitled to public residential
+                    housing, they can only rely on subdivided units to gain a shelter. According to the "2016
+                    Population
+                    By-census Thematic Report: Persons Living in Subdivided Units",
+                    There were around 200 thousand people live in approximately 92 thousand subdivided units (SDU),
+                    with an average of
+                    2.3 people per household. This number broke the data of past years record.The median of subdivided
+                    flats area were 5.3 meter square, lower than
+                    that of normal Hong Kong household flats. The research revealed that there were a large number of
+                    children and youth made up the composition of residents.
+
+
+                </p>
+            </div>
+        </div>
+
+
+
+        <!--section for graph)-->
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6"> <canvas id="barchartresidentsage"></canvas><br><br></div>
+                <div class="col-xl-6"> <canvas id="barchartresidentsmarriage"></canvas><br><br></div>
+                <div class="col-xl-6"> <canvas id="barchartresidentsedu"></canvas><br><br></div>
+                <div class="col-xl-6"> <canvas id="barchartresidentsincome"></canvas><br><br></div>
+            </div>
+        </div>
+
+
+        <!-- end about-desc -->
+
+
+        <div class="row">
+            <div class="col-12">
+                <p class="lead">
+                    Overall speaking, there were more children and young to middle-aged persons living in SDUs.
+                    With most of the residents are married and most of the residents did not receive tertiary
+                    education. In addition, most of the residents had monthly household income of below $15,000.
+                    There is another shocking result, the report revealed that there were more than 5000 SDU residents
+                    were managerial or above excutives and professional practitioners, whom traditionally perceived as
+                    the midde-class members in Hong Kong.<br>
+
+                    <!--svg section-->
+                    <svg width=350 height=400>
+                        <rect x="27" y="29" width="121" height="67" stroke="black" stroke-width="2" fill="white" />
+                        <rect x="38" y="39" width="28" height="31" stroke="black" stroke-width="1.5" fill="white" />
+                        <rect x="60" y="39" width="45" height="31" stroke="black" stroke-width="1.5" fill="red" />
+                        <text x="11" y="130" fill="black" font-size="16">Average size of subdivided house:</text>
+                        <text x="11" y="155" fill="black" font-size="16"> 56.5 sq ft</text>
+                    </svg>
+
+                    <svg width=350 height=400>
+                        <rect x="27" y="29" width="150" height="100" stroke="black" stroke-width="2" fill="white" />
+                        <rect x="38" y="39" width="28" height="31" stroke="black" stroke-width="1.5" fill="white" />
+                        <rect x="60" y="39" width="45" height="31" stroke="black" stroke-width="1.5" fill="red" />
+                        <text x="11" y="160" fill="black" font-size="16">Standard size for public housing:</text>
+                        <text x="11" y="185" fill="black" font-size="16">75.0 sq ft</text>
+                    </svg>
+
+
+                    <svg width=350 height=400>
+                        <rect x="27" y="29" width="200" height="270" stroke="black" stroke-width="2" fill="white" />
+                        <rect x="38" y="39" width="28" height="31" stroke="black" stroke-width="2" fill="white" />
+                        <rect x="60" y="39" width="45" height="31" stroke="black" stroke-width="2" fill="red" />
+                        <text x="25" y="330" fill="black" font-size="16">Average size for HK household:</text>
+                        <text x="25" y="355" fill="black" font-size="16">161.5 sq ft</text>
+                    </svg>
+
+
+                    <!--end svg section-->
+
+
+                    <br>
+                    It is observed that the young people would like to live separately from their family, while Hong
+                    Kong's
+                    property price is unaffordable to them. SDUs become popular among the young people and professional
+                    individuals,
+                    who would like to enjoy an individual resting area. Nonetheless, SDU owners tend to raise rents
+                    continuously
+                    and expensively charge the residents for utitilies usage. This creates a high burden on low-income
+                    individuals.
+                </p>
+            </div>
+
+
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-2"></div>
+                <div class="col-xl-8"> 
+                    <div class='tableauPlaceholder' id='viz1543863809795' style='position: relative'><noscript>
+                            <a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;W2&#47;W24JPGZ3H&#47;1_rss.png'
+                                    style='border: none' />
+                            </a>
+                        </noscript>
+                        <object class='tableauViz' style='display:none;'>
+                            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+                            <param name='embed_code_version' value='3' />
+                            <param name='path' value='shared&#47;W24JPGZ3H' />
+                            <param name='toolbar' value='yes' />
+                            <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;W2&#47;W24JPGZ3H&#47;1.png' />
+                            <param name='animate_transition' value='yes' />
+                            <param name='display_static_image' value='yes' />
+                            <param name='display_spinner' value='yes' />
+                            <param name='display_overlay' value='yes' />
+                            <param name='display_count' value='yes' />
+                            <param name='filter' value='publish=yes' /></object>
+                    </div>
+                    <br><br></div>
+                <div class="col-xl-2"></div>
+            </div>
+        </div>
+
+       
+        
+
+        <div class="col-12">
+            <p class="lead">
+                The geographical distribution of households living in SDUs was
+                similar to that of SDUs. 56.9% of persons living in SDUs were in Kowloon,
+                concentrating in the Yau Tsim Mong district (22.5%), Sham Shui Po district
+                (16.7%) and Kowloon City district (10.0%). These were also the top 3 districts
+                in terms of households living in SDUs.
+            </p>
+        </div>
+
+
+        <!--here can make a d3.js map to indicate the spread of SDUs (46-49 stat)-->
+        <!-- <div class="row">
+            <div class="col-12">
+                <p class="lead">
+                    The geographical distribution of households and persons living in SDUs was
+                    similar to that of SDUs. 56.9% of persons living in SDUs were in Kowloon,
+                    concentrating in the Yau Tsim Mong district (22.5%), Sham Shui Po district
+                    (16.7%) and Kowloon City district (10.0%). These were also the top 3 districts
+                    in terms of households living in SDUs.
+
+                    begin d3.js-->
+        <!--<svg id="hk_map" width="800" height="480" align="center"></svg>
+                    <div class="card" id="tooltip">
+                        <div class="card-body">
+                            <h5 class="card-title" id="title">Card title</h5>
+                            <h6 class="card-subtitle mb-2 text-muted" id="subtitle">Card subtitle</h6>
+                        </div>
+                    </div>
+                    <script>
+
+                        var abuses = [
+                            { district: "Central & Western", cases: 1354, map_id: 1 },
+                            { district: "Wan Chai", cases: 1651, map_id: 15 },
+                            { district: "Eastern", cases: 2653, map_id: 2 },
+                            { district: "Southern", cases: 0, map_id: 11 },
+                            { district: "Yau Tsim Mong", cases: 5973, map_id: 17 },
+                            { district: "Sham Shui Po", cases: 4290, map_id: 10 },
+                            { district: "Kowloon City", cases: 2620, map_id: 4 },
+                            { district: "Wong Tai Sin", cases: 0, map_id: 16 },
+                            { district: "Kwun Tong", cases: 1472, map_id: 6 },
+                            { district: "Kwai Tsing", cases: 1100, map_id: 5 },
+                            { district: "Tsuen Wan", cases: 1866, map_id: 13 },
+                            { district: "Tuen Mun", cases: 0, map_id: 14 },
+                            { district: "Yuen Long", cases: 906, map_id: 18 },
+                            { district: "Northern", cases: 905, map_id: 7 },
+                            { district: "Tai Po", cases: 987, map_id: 12 },
+                            { district: "Shatin", cases: 0, map_id: 9 },
+                            { district: "Sai Kung", cases: 0, map_id: 8 },
+                            { district: "Islands", cases: 0, map_id: 3 }
+                        ];
+
+                        var svg = d3.select("#hk_map");
+
+                        var hongKongCenter = [114.21, 22.35];
+                        var projection = d3.geoMercator().center(hongKongCenter).scale(60000);
+                        var geoPath = d3.geoPath(projection);
+
+                        d3.json("HKG_adm.json").then(function (topoData) {
+
+                            console.log(topoData);
+
+                            svg.append("g")
+                                .attr("class", "districts")
+                                .selectAll("path")
+                                .data(topojson.feature(topoData, topoData.objects.HKG_adm1_1).features)
+                                .enter().append("path")
+                                .attr("class", "district")
+                                .attr("d", geoPath);
+
+                            svg.append("path")
+                                .attr("class", "district-borders")
+                                //use the data provide by topojoson, obtain the shape of the 18 polygon
+                                .attr("d", geoPath(topojson.mesh(topoData, topoData.objects.HKG_adm1_1, function (a, b) { return a !== b; })));
+
+                            //select all the district (all the 18 path, the SVG item)
+                            var districts = d3.selectAll(".district");
+
+                            districts.data(abuses.sort(function (x, y) {
+                                return d3.ascending(x.map_id, y.map_id);
+                            }));
+
+
+                            var myColorScale = d3.scaleLinear().domain([0, 300, 600, 3000]).range(["green", "yellow", "orange", "red"]);
+                            districts.style("fill", function (d) {
+                                return myColorScale(d.cases);
+                            })
+
+                            //define the items bases on the data
+                            var tooltip = d3.select("#tooltip");
+                            var title = d3.select("#title");
+                            var subtitle = d3.select("#subtitle");
+
+
+                            //define the changes when you have mouse on it or when you move the mouse out
+                            districts
+                                .on("mouseover", function (d) {
+                                    d3.select(this).style("opacity", 0.5);
+                                })
+                                .on("mouseout", function (d) {
+                                    tooltip.style("display", "none");
+                                    d3.select(this).style("opacity", 1);
+                                })
+                                .on("mousemove", function (d) {
+                                    tooltip
+                                        .style("left", (d3.event.pageX + 10) + "px")
+                                        .style("top", (d3.event.pageY - 100) + "px");
+                                    title.text(d.district);
+                                    subtitle.text("Quarters with subdivided units" + d.cases);
+                                });
+
+
+                        });
+
+                    </script>
+                </p>
+            </div>
+        </div>
+        end d3.js -->
+
+        </div>
+        <div class="testimonials-wrap" data-aos="fade-up">
+
+            <div class="row">
+                <div class="col-full testimonials-header">
+                    <h2 class="h1">What Did Citizens Say</h2>
+                </div>
+            </div>
+
+            <div class="row testimonials">
+
+                <div class="col-full testimonials__slider">
+
+                    <div class="testimonials__slide">
+                        <img src="images/avatars/Laishansze.jpeg" alt="Author image" class="testimonials__avatar">
+                        <p>Caged homes are even worse off, but they are not part of the tally in this report so the
+                            real situation could be more dire. </p>
+                        <div class="testimonials__author">
+                            Lai-shan Sze
+                            <span>Society for Community Organisation</span>
+                        </div>
+                    </div> <!-- end testimonials__slide -->
+
+                    <div class="testimonials__slide">
+                        <img src="images/avatars/kwkportrait.jpg" alt="Author image" class="testimonials__avatar">
+                        <p>Regardless of the increase in the public housing supply, the number of applicants will only
+                            rise.</p>
+                        <div class="testimonials__author">
+                            Kwok Wai-keung
+                            <span>Federation of Trade Unions Lawmaker</span>
+                        </div>
+                    </div> <!-- end testimonials__slide -->
+
+                    <div class="testimonials__slide">
+                        <img src="images/avatars/ricacorp.jpeg" alt="Author image" class="testimonials__avatar">
+                        <p>Small flats in the area, seen as hot choices for first-time homebuyers, were hit hardest
+                            because prices of these units had increased too fast in the past two years. These micro
+                            flats have been more affordable to young people as their sizes translated to a relatively
+                            lower total price.</p>
+                        <div class="testimonials__author">
+                            Derek Chan
+                            <span>Ricacorp’s Head of Research</span>
+                        </div>
+                    </div> <!-- end testimonials__slide -->
+
+                </div> <!-- end testimonials__slider -->
+
+            </div> <!-- end testimonials -->
+
+        </div> <!-- end testimonials-wrap -->
+
+    </section> <!-- end s-works -->
+
+    <!-- stats
+    ================================================== -->
+    <section id="stats" class="s-stats">
+
+        <div class="row stats block-1-4 block-m-1-2 block-mob-full" data-aos="fade-up">
+
+            <div class="col-block stats__col ">
+                <div class="stats__count">299</div>
+                <h5>Public housing expenditure<br>($10 million) </h5>
+            </div>
+            <div class="col-block stats__col">
+                <div class="stats__count">37</div>
+                <h5>House production in 2018<br>(thousand) </h5>
+            </div>
+            <div class="col-block stats__col">
+                <div class="stats__count">19.4</div>
+                <h5>Years for a person to buy flat<br> without spending any money</h5>
+            </div>
+            <div class="col-block stats__col">
+                <div class="stats__count">1</div>
+                <h5>HK's Home price ranking</h5>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Reasons for housing problem
+    ================================================== -->
+    <section id='reason' class="s-works">
+        <div class="row section-header" data-aos="fade-up">
+            <div class="col-full">
+                <h3 class="subhead">Reasons for housing problem in HK</h3>
+                <h1 class="display-1"></h1>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="about-process process block-1-2 block-tab-full">
+
+                <div class="process__vline-left"></div>
+                <div class="process__vline-right"></div>
+
+                <div class="col-block process__col" data-item="1" data-aos="fade-up">
+                    <div class="process__text">
+                        <h4>Shortage of Land</h4>
+                        Today Hong Kong's population is estimated to be 7.43 million,
+                        which makes it one of the most densely populated areas in the world.
+                        Hong Kong has a population density of 6,300 people per square kilometer.
+                        However, we just have a land mass of 1,104 square kilometers with a highly developed
+                        transportation network and densely populated buildings.
+                        <p>
+
+                        </p>
+                    </div>
+                </div>
+                <div class="col-block process__col" data-item="2" data-aos="fade-up">
+                    <div class="process__text">
+                        <h4>Property Speculation</h4>
+
+                        <p>
+                            People buy the house in HK not only because they have the needs for living, but also for
+                            speculation.
+                            They expected the housing price will keep constant or even increase in the future, which
+                            also increase the demand for housing.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-block process__col" data-item="3" data-aos="fade-up">
+                    <div class="process__text">
+                        <h4>Abuse of Land Rights</h4>
+
+                        <p>
+                            The past Chief Executive Leung Chun-ying had once mentioned that Hong Kong lacks the land
+                            that
+                            is developable. There is severe abuse of land rights in the New Territories due to the
+                            failure in managing "Ding"
+                            rights. Some of the originally agricultural land were converted by landowner into a
+                            “brownfield site” for car parks
+                            or other commercial use, making huge profits as a result. It is clearly unaffordable for
+                            Hong Kong when land is so scarce.
+
+
+                        </p>
+                    </div>
+                </div>
+                <div class="col-block process__col" data-item="4" data-aos="fade-up">
+                    <div class="process__text">
+                        <h4>Expensive Land</h4>
+
+                        <p>
+                            Even though government is trying to impose polices on lowering the housing price,
+                            the government was practicing a ‘high land price’ policy to bid the land in order to
+                            maintain high land sale revenue. If the bidding price is lower than government's
+                            expectation,
+                            the government will take back the land.
+                            The developers need to buy the land in a high price, which also has led to high home
+                            prices.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+            <br><br>
+            <!-- Conclusion
+    ================================================== -->
+            <section id='reason'>
+
+                <div class="col-full">
+                    <h3 class="subhead">Conclusion</h3>
+                    <h1 class="display-1"></h1>
+                </div>
+                <div class="col-12">
+                    <p class="lead">
+                        The scarcity of affordable housing in Hong Kong has been rooted deeply and it got worsen these
+                        years. It's not easy to solve, it should
+                        be the top priority for the HKSAR Government.
+                    </p>
+                </div>
+
+
+        </div>
+        <div class="row">
+            <!-- end process -->
+
+            <!-- end stats -->
+
+    </section>
+    <!-- end s-stats -->
+
+
+    <!-- contact
+    ================================================== -->
+    <section id="contact" class="s-contact">
+
+        <div class="row section-header" data-aos="fade-up">
+            <div class="col-full">
+                <h3 class="subhead subhead--light">Contact Us</h3>
+                <h1 class="display-1 display-1--light"><a href="https://www.hkbu.edu.hk/eng/main/index.jsp">Voice out
+                        your opinion</a> on housing issue in HK! We
+                    invite you to join our community!
+                </h1>
+            </div>
+
+        </div>
+        <!-- end section-header -->
+    <!--contact form-->
+    <section id='reason' class="s-works">
+        <div class="row section-header" data-aos="fade-up">
+
+            <h3>Voice out your opinion!</h3>
+
+            <form>
+                    <div>
+                        <label for="sampleInput">Your email</label>
+                        <input class="full-width" type="email" placeholder="test@mailbox.com" id="sampleInput">
+                </div>
+                <div>
+                        <label for="sampleRecipientInput">Your opinion</label>
+                        <div class="cl-custom-select">
+                            <select class="full-width" id="sampleRecipientInput">
+                                <option value="Option 1">Agree</option>
+                                <option value="Option 2">Neutral</option>
+                                <option value="Option 3">Disagree</option>
+                            </select>
+                        </div>
+                </div>
+                
+                    <label for="exampleMessage">Comment</label>
+                    <textarea class="full-width" placeholder="Your message" id="exampleMessage"></textarea>
+
+                    <label class="add-bottom">
+                        <input type="checkbox">
+                        <span class="label-text">Allow we to contact you though email.</span>
+                    </label>
+                
+                    <input class="btn--primary" type="submit" value="Submit">
+
+            </form>
+
+        </div>
+</section>
+
+
+        <div class="row">
+
+            <div class="col-full contact-main" data-aos="fade-up">
+                <p>
+                    <a href="mailto:#0" class="contact-email">Reference</a>
+                    <span class="contact-number">
+                        <a href="https://www.housingauthority.gov.hk/en/about-us/publications-and-statistics/prh-applications-average-waiting-time/index.html">
+                            1.
+                            https://www.housingauthority.gov.hk/en/about-us/publications-and-statistics/prh-applications-average-waiting-time/index.html</a>
+                        <br>
+                        <a href="https://www.bycensus2016.gov.hk/data/16BC_SDU_report.pdf">
+                            2. https://www.bycensus2016.gov.hk/data/16BC_SDU_report.pdf</a>
+                        <br>
+                        <a href="http://www.ejinsight.com/20180123-hk-home-prices-most-unaffordable-for-8th-straight-year-survey/">
+                            3.
+                            http://www.ejinsight.com/20180123-hk-home-prices-most-unaffordable-for-8th-straight-year-survey/</a>
+                        <br>
+                        <a href="https://www.housingauthority.gov.hk/tc/common/pdf/about-us/publications-and-statistics/prh-applications-average-waiting-time/WT-Distribution.pdf<br>
+                            https://candlepozt.com/2018/01/04/5-reality-cage-house-in-hong-kong/ ">
+                            4.
+                            https://www.housingauthority.gov.hk/tc/common/pdf/about-us/publications-and-statistics/prh-applications-average-waiting-time/WT-Distribution.pdf<br>
+                            https://candlepozt.com/2018/01/04/5-reality-cage-house-in-hong-kong/ </a></span>
+                </p>
+            </div>
+            <!-- end contact-main -->
+
+        </div>
+        <!-- end row -->
+
+        <div class="row">
+
+            <div class="col-five tab-full contact-secondary" data-aos="fade-up">
+                <h3 class="subhead subhead--light">Voice your opinion</h3>
+
+                <p class="contact-address">
+                    housingvoice@gmail.com
+
+                </p>
+            </div>
+            <!-- end contact-secondary -->
+
+            <div class="col-five tab-full contact-secondary" data-aos="fade-up">
+                <h3 class="subhead subhead--light">Follow Us</h3>
+
+                <ul class="contact-social">
+                    <li>
+                        <a href="https://www.facebook.com/Miserable-Hongkonger-289388818367581/">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </li>
+
+                </ul>
+                <!-- end contact-social -->
+
+                <div class="contact-subscribe">
+                    <form id="mc-form" class="group mc-form" novalidate="true">
+                        <input type="email" value="" name="EMAIL" class="email" id="mc-email" placeholder="Email Address"
+                            required="">
+                        <input type="submit" name="subscribe" value="Subscribe">
+                        <label for="mc-email" class="subscribe-message"></label>
+                    </form>
+                </div>
+                <!-- end contact-subscribe -->
+            </div>
+            <!-- end contact-secondary -->
+
+        </div>
+        <!-- end row -->
+
+        <div class="cl-go-top">
+            <a class="smoothscroll" title="Back to Top" href="#top">
+                <i class="icon-arrow-up" aria-hidden="true"></i>
+            </a>
+        </div>
+
+    </section>
+    <!-- end s-contact -->
+
+
+
+
+    <!-- photoswipe background
+    ================================================== -->
+    <div aria-hidden="true" class="pswp" role="dialog" tabindex="-1">
+
+        <div class="pswp__bg"></div>
+        <div class="pswp__scroll-wrap">
+
+            <div class="pswp__container">
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+            </div>
+
+            <div class="pswp__ui pswp__ui--hidden">
+                <div class="pswp__top-bar">
+                    <div class="pswp__counter"></div>
+                    <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                    <button class="pswp__button pswp__button--share" title="Share"></button>
+                    <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                    <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                    <div class="pswp__preloader">
+                        <div class="pswp__preloader__icn">
+                            <div class="pswp__preloader__cut">
+                                <div class="pswp__preloader__donut"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                    <div class="pswp__share-tooltip"></div>
+                </div>
+                <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+                <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+                <div class="pswp__caption">
+                    <div class="pswp__caption__center"></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- end photoSwipe background -->
+
+
+    <!-- preloader
+    ================================================== -->
+    <div id="preloader">
+        <div id="loader">
+        </div>
+    </div>
+
+
+    <!-- Java Script
+    ================================================== -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/noframework.waypoints.min.js"></script>
+
+
+    <script>
+
+        function drawChart1() {
+            var ctx = document.getElementById("mylineChart");
+            var mylineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ["2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017"],
+                    datasets: [{
+                        label: 'Price indices of private domestic housing in HK',
+                        fill: false,
+                        data: [150.9, 182.1, 206.2, 242.4, 256.9, 296.8, 286.1, 334.0],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(154, 162, 235, 0.2)',
+                            'rgba(154, 162, 35, 0.2)',
+
+                        ],
+                        borderColor: [
+                            'rgba(255,99,132,1)',
+
+                        ],
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Rental indices of private domestic housing in HK',
+                        fill: false,
+                        data: [119.7, 134.0, 142.6, 154.5, 159.5, 172.8, 168.2, 182.6],
+
+                        borderColor: [
+                            'rgba(150,90,200,1)',
+
+                        ],
+                        borderWidth: 1
+                    },
+
+                    {
+                        label: 'Real wage indices',
+                        fill: false,
+                        data: [113.5, 117.9, 118.9, 118.7, 115.8, 117.7, 120.7, 123.2],
+
+                        borderColor: [
+                            'rgba(50,200,100,1)',
+
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: "Price, rental and real wage indices in HK",
+                        fontSize: 24
+                    },
+                    legend: {
+                        display: true
+                    },
+                    elements: {
+                        line: {
+                            tension: 0, // disables bezier curves
+                        }
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: false
+                            }
+                        }]
+
+                    }
+                }
+            });
+        }
+
+        var waypoint = new Waypoint({
+            element: document.getElementById('mylineChart'),
+            handler: function (direction) {
+                drawChart1();
+            },
+            offset: 'bottom-in-view'
+        })
+    </script>
+    <script>
+
+        function drawChart2() {
+            var ctx = document.getElementById("barchartresidentsage");
+            var barchartresidentsage = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ["Below 25", "25-44", "45-64", "65 or above"],
+                    datasets: [{
+                        label: 'Analysis of SDU residents demographic character by age (%)',
+
+                        data: [28.4, 39.4, 24.0, 8.2],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(154, 162, 235, 0.2)',
+                            'rgba(154, 162, 35, 0.2)',
+
+
+                        ],
+                        borderColor: [
+                            'rgba(255,99,132,1)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(154, 162, 235, 0.2)',
+                            'rgba(154, 162, 35, 0.2)',
+
+                        ],
+                        borderWidth: 1
+                    },
+
+
+                    ]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: "Analysis of SDU residents demographic character by age (%)",
+                        fontSize: 20
+                    },
+                    legend: {
+                        display: true
+                    },
+
+                    scales: {
+                        yAxes: [{
+
+                        }]
+
+                    }
+                }
+            });
+        }
+        var waypoint = new Waypoint({
+            element: document.getElementById('barchartresidentsage'),
+            handler: function (direction) {
+                drawChart2();
+            },
+            offset: 'bottom-in-view'
+        })
+
+    </script>
+    <script>
+
+        function drawChart3() {
+            var ctx = document.getElementById("barchartresidentsmarriage");
+            var barchartresidentsmarriage = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ["Married", "Never married", "Divorced/separated/ widowed"],
+                    datasets: [{
+                        label: 'Analysis of SDU residents demographic character by marriage status (%)',
+
+                        data: [58.0, 29.2, 12.8],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(154, 162, 235, 0.2)',
+                            'rgba(154, 162, 35, 0.2)',
+
+                        ],
+                        borderColor: [
+                            'rgba(255,99,132,1)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(154, 162, 235, 0.2)',
+                            'rgba(154, 162, 35, 0.2)',
+
+                        ],
+                        borderWidth: 1
+                    },
+
+
+                    ]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: "Analysis of SDU residents demographic character by marriage status  (%)",
+                        fontSize: 20
+                    },
+                    legend: {
+                        display: true
+                    },
+                    Boolean: {
+                        display: true
+                    },
+
+                    scales: {
+                        yAxes: [{
+
+                        }]
+
+                    }
+                }
+            });
+        }
+        var waypoint = new Waypoint({
+            element: document.getElementById('barchartresidentsmarriage'),
+            handler: function (direction) {
+                drawChart3();
+            },
+            offset: 'bottom-in-view'
+        })
+    </script>
+    <script>
+
+        function drawChart4() {
+            var ctx = document.getElementById("barchartresidentsedu");
+            var barchartresidentsedu = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ["Primary or below", "Secondary educaiton", "Tertiary education"],
+                    datasets: [{
+                        label: 'Analysis of SDU residents demographic character by education level (%)',
+
+                        data: [17.3, 70.0, 12.7],
+                        backgroundColor: [
+                            'rgba(105, 99, 132, 0.2)',
+                            'rgba(24, 162, 235, 0.2)',
+                            'rgba(100, 102, 235, 0.2)',
+                            'rgba(104, 62, 35, 0.2)',
+
+                        ],
+                        borderColor: [
+                            'rgba(255,99,132,1)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(154, 162, 235, 0.2)',
+                            'rgba(154, 162, 35, 0.2)',
+
+                        ],
+                        borderWidth: 1
+                    },
+
+
+                    ]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: "Analysis of SDU residents demographic character by education level  (%)",
+                        fontSize: 20
+                    },
+                    legend: {
+                        display: true
+                    },
+                    Boolean: {
+                        display: true
+                    },
+                    scales: {
+                        yAxes: [{
+
+                        }]
+
+                    }
+                }
+            });
+        }
+        var waypoint = new Waypoint({
+            element: document.getElementById('barchartresidentsedu'),
+            handler: function (direction) {
+                drawChart4();
+            },
+            offset: 'bottom-in-view'
+        })
+    </script>
+
+    <script>
+        function drawChart5() {
+            var ctx = document.getElementById("barchartresidentsincome");
+            var barchartresidentsincome = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ["Below $10,000", "$10,000-$14,999", "$15,000-$19,999", "$20,000 or above"],
+                    datasets: [{
+                        label: 'Analysis of SDU residents demographic character by median monthly household income (%)',
+
+                        data: [23.7, 35.6, 26.1, 14.6],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(154, 162, 235, 0.2)',
+                            'rgba(154, 162, 35, 0.2)',
+
+                        ],
+                        borderColor: [
+                            'rgba(255,99,132,1)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(154, 162, 235, 0.2)',
+                            'rgba(154, 162, 35, 0.2)',
+
+                        ],
+                        borderWidth: 1
+                    },
+
+
+                    ]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: "Analysis of SDU residents demographic character by median monthly household income  (%)",
+                        fontSize: 20
+                    },
+                    legend: {
+                        display: true
+                    },
+                    Boolean: {
+                        display: false
+                    },
+
+                    scales: {
+                        yAxes: [{
+
+                        }]
+
+                    }
+                }
+            });
+        }
+        var waypoint = new Waypoint({
+            element: document.getElementById('barchartresidentsincome'),
+            handler: function (direction) {
+                drawChart5();
+            },
+            offset: 'bottom-in-view'
+        })
+
+
+    </script>
+    <script>
+        function drawChart6() {
+            var ctx = document.getElementById("spreadofSDU");
+            var spreadofSDU = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ["New Territories", "Hong Kong Island", "Kowloon"],
+                    datasets: [{
+                        label: 'Geographical spread of SDUs(%)',
+
+                        data: [23.6, 19.5, 56.9],
+                        backgroundColor: [
+                            'rgba(100, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(104, 162, 235, 0.2)',
+                            'rgba(154, 162, 35, 0.2)',
+
+                        ],
+                        borderColor: [
+                            'rgba(255,99,132,1)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(154, 162, 235, 0.2)',
+                            'rgba(154, 162, 35, 0.2)',
+
+                        ],
+                        borderWidth: 1
+                    },
+
+
+                    ]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: "Geographical spread of SDUs(%)",
+                        fontSize: 20
+                    },
+                    legend: {
+                        display: true
+                    },
+                    Boolean: {
+                        display: false
+                    },
+
+                    scales: {
+                        yAxes: [{
+
+                        }]
+
+                    }
+                }
+            });
+        }
+        var waypoint = new Waypoint({
+            element: document.getElementById('spreadofSDU'),
+            handler: function (direction) {
+                drawChart6();
+            },
+            offset: 'bottom-in-view'
+        })
+
+
+        //public housing waiting time
+        function drawChart7() {
+            var ctx = document.getElementById("publichousingwaitingtime");
+            var barchartresidentsage = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ["< 1yr", "1yr-2yrs", "2yrs-3yrs", "3yrs-4yrs", "4yrs-5yrs", ">5yrs"],
+                    datasets: [{
+                        label: 'Waiting time for public housing in 2016-2017',
+
+                        data: [1200, 630, 2500, 2900, 4100, 11400],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(154, 162, 235, 0.2)',
+                            'rgba(0, 162, 35, 0.2)',
+                            'rgba(40, 200, 100, 0.2)',
+                            'rgba(34, 45, 35, 0.2)',
+
+                        ],
+                        borderColor: [
+                            'rgba(255,99,132,1)',
+                            'rgba(54, 200, 235, 0.2)',
+                            'rgba(154, 202, 235, 0.2)',
+                            'rgba(10, 192, 35, 0.2)',
+                            'rgba(40, 250, 100, 0.2)',
+                            'rgba(34, 95, 35, 0.2)',
+
+                        ],
+                        borderWidth: 1
+                    },
+
+
+                    ]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: "Waiting time for public housing in 2016-2017",
+                        fontSize: 20
+                    },
+                    legend: {
+                        display: true
+                    },
+
+                    scales: {
+                        yAxes: [{
+
+                        }]
+
+                    }
+                }
+            });
+        }
+        var waypoint = new Waypoint({
+            element: document.getElementById('publichousingwaitingtime'),
+            handler: function (direction) {
+                drawChart7();
+            },
+            offset: 'bottom-in-view'
+        })
+
+    </script>
+
+    <script>
+        var ctx = document.getElementById("myChart2").getContext('2d');
+        var myChart2 = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ["2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018"],
+                datasets: [{
+                    label: 'Average time for waiting public housing',
+                    data: [2.2, 2.7, 2.7, 3.0, 4.5, 4.7, 5.1, 5.5],
+                    backgroundColor: [
+                        'rgba(30, 200, 132,1)',
+                    ],
+                    borderColor: [
+                        'rgba(100,255,132,1)',
+                    ],
+                    fill: false,
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "Average time for waiting public housing",
+                    fontSize: 24
+                },
+                legend: {
+                    display: true
+                },
+                elements: {
+                    line: {
+                        tension: 0, // disables bezier curves
+                    }
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+
+                }
+            }
+        });
+    </script>
+    <script type='text/javascript'>
+        var divElement = document.getElementById('viz1543863809795');
+
+        var vizElement = divElement.getElementsByTagName('object')[0];
+        vizElement.style.width = '100%'; vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px'; 
+        var scriptElement = document.createElement('script'); 
+        scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; 
+        vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+        </script>
+
+</body>
+
+</html>
